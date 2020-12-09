@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Indoor Garden</title>
+
+    <!-- App Styling -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" type="text/css" href="styles/font/flaticon.css">
+
+  </head>
+  <body>
+    <div class="sidetab">
+      <div class="sidetap-top">
+        <img src="images/leaf.png" height="45px" width="45px" style="margin: auto 5px auto 20px">
+        <p style="color: white; font-family: forte; font-size: 28px; color: #5867dd; margin: auto 70px auto auto;">GROUP 7</p>
+      </div>
+      <div class="sidetap-body">
+
+      </div>
+      <div class="sidetap-bottom">
+        <img src="images/hwu.png" height="32px" width="50px" style="margin-left: 8px; margin-right: 5px;">
+        <p style="color: #5867dd; font-family: forte; font-size: 20px;">Heriot-Watt University</p>
+      </div>
+    </div>
+    <div class="main">
+      <div class="main-header">
+        <div style="position: absolute; left: 16px; top: 50%; -ms-transform: translateY(-50%); transform: translateY(-50%); color: #5867dd; background-color: #f0f3ff; height: 35px; width: 260px;">
+          <p id="current-room" style="font-size: 25px; font-family: Arial, Helvetica, sans-serif; margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform:  translate(-50%, -50%); width: 100%;">Smart Indoor Garden</p>
+        </div>
+      </div>
+      <div class="main-body">
+        <p style="font-family: Arial, Helvetica, sans-serif; color: #595d6e; font-size: 23px; margin-bottom: 0;">Monitoring</p>
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin-top: 4px; margin-bottom: 23px; color: grey;">4 Index</p>
+        <div class="monitoring-container">
+          <div class="monitoring-temperature">
+            <div>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: #fff; font-size: 50px; margin: 15px 30px 0 0; float: right;"><span id="temp">0.00</span>°C</p>
+              <img src="images/temperature.png" height="64px" width="64px" style="padding: 10px 0px 20px 30px; position: relative; top: 10px;">
+            </div>
+            <p style="float: right; font-family: Arial, Helvetica, sans-serif; color: #fff; font-size: 16px; margin: 0; position: relative; bottom: 30px; right: 30px">Temperature</p>
+          </div>
+          <div class="monitoring-humidity">
+            <div>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: #fff; font-size: 50px; margin: 15px 40px 0 0; float: right;"><span id="humid">0.00</span>%</p>
+              <img src="images/humidity.png" height="64px" width="64px" style="padding: 10px 0px 20px 30px; position: relative; top: 10px;">
+            </div>
+            <p style="float: right; font-family: Arial, Helvetica, sans-serif; color: #fff; font-size: 16px; margin: 0; position: relative; bottom: 30px; right: 40px;">Humidity</p>
+          </div>
+          <div class="monitoring-light">
+            <div>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: #fff; font-size: 35px; margin: 15px 80px 0 0; float: right;"><span id="light" style="font-size: 50px;">0</span></p>
+              <img src="images/brightness.png" height="64px" width="64px" style="padding: 10px 0px 20px 40px; position: relative; top: 10px;">
+            </div>
+            <p style="float: right; font-family: Arial, Helvetica, sans-serif; color: #fff; font-size: 16px; margin: 0 80px 0 0; position: relative; bottom: 30px;">Light</p>
+          </div>
+          <div class="monitoring-soil">
+            <div>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: #fff; font-size: 35px; margin: 15px 75px 0 0; float: right;"><span id="soil" style="font-size: 50px;">Wet</span></p>
+              <img src="images/soil.png" height="64px" width="64px" style="padding: 10px 0px 20px 40px; position: relative; top: 10px;">
+            </div>
+            <p style="float: right; font-family: Arial, Helvetica, sans-serif; color: #fff; font-size: 16px; margin: 0 75px 0 0; position: relative; bottom: 30px;">Soil Moisture</p>
+          </div>
+        </div>
+        <p style="font-family: Arial, Helvetica, sans-serif; color: #595d6e; font-size: 23px; margin-bottom: 2px;">Graph</p>
+        <div class="chart-container">
+          <canvas id="chart-3" style="height: 100%; width: 100%;"></canvas>
+        </div>
+        <p style="font-family: Arial, Helvetica, sans-serif; color: #595d6e; font-size: 23px; margin-bottom: 23px;">Control</p>
+        <div class="control-container">
+          <div class="control-element">
+            <div class="element-header">
+              <span style="font-family: Arial, Helvetica, sans-serif; font-size: 25px; color: #5867dd; background-color: #f0f3ff; margin: 0; padding: 5px;">Soil Moisture Control</span>
+            </div>
+            <div>
+              <span style="display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 20px 30px 10px 0">Automatic</span>
+              <label class="switch">
+                <input type="checkbox" id="moisture-auto" onchange="autoMoisture()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div>
+              <span style="display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 30px 55px 10px 0">Manual</span>
+              <label class="switch">
+                <input type="checkbox" id="moisture-man" onchange="manMoisture()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="actuator" style="margin-bottom: 5px">
+              <div style="display: inline-block; height: 100%; width: 70px; background-color: #5867ff; border-radius: 4px; margin-right: 55px;">
+                <p style="color: white; font-size: 15px; margin: 6.5px 0 6.5px 0; text-align: center;">Pump</p>
+              </div>
+              <div class="checkbox-container">
+                <input id="pump" type="checkbox" onchange="actuatorToggle(this)">
+              </div>
+            </div>
+          </div>
+          <div class="control-element">
+            <div class="element-header">
+              <span style="font-family: Arial, Helvetica, sans-serif; font-size: 25px; color: #5867dd; background-color: #f0f3ff; margin: 0; padding: 5px;">Light Intensity Control</span>
+            </div>
+            <div>
+              <span style="display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 20px 30px 10px 0">Automatic</span>
+              <label class="switch">
+                <input type="checkbox" id="light-auto" onchange="autoLight()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div>
+              <span style="display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 30px 55px 10px 0">Manual</span>
+              <label class="switch">
+                <input type="checkbox" id="light-man" onchange="manLight()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="actuator" style="margin-bottom: 5px">
+              <div style="display: inline-block; height: 100%; width: 70px; background-color: #5867ff; border-radius: 4px; margin-right: 55px;">
+                <p style="color: white; font-size: 15px; margin: 6.5px 0 6.5px 0; text-align: center;">LED</p>
+              </div>
+              <div class="checkbox-container">
+                <input id="led" type="checkbox" onchange="actuatorToggle(this)">
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyBokBgWSyIR-46npucHn9LPf4slKwCA8zg",
+        authDomain: "smartindoorgarden-77d11.firebaseapp.com",
+        databaseURL: "https://smartindoorgarden-77d11.firebaseio.com",
+        projectId: "smartindoorgarden-77d11",
+        storageBucket: "smartindoorgarden-77d11.appspot.com",
+        messagingSenderId: "103752037076",
+        appId: "1:103752037076:web:020797aaf5f6170485c141",
+        measurementId: "G-YLDE34ZKDL"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script src="scripts/chart/chart.js/dist/Chart.min.js"></script>
+    <script src="scripts/main.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "103752037076",
+    "firebase_url": "https://smartindoorgarden-77d11.firebaseio.com",
+    "project_id": "smartindoorgarden-77d11",
+    "storage_bucket": "smartindoorgarden-77d11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103752037076:android:90cd7357a2bf2f1985c141",
+        "android_client_info": {
+          "package_name": "com.example.asmp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103752037076-2d27cqqcit3o7bacl319ieuse1go3uhh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.asmp",
+            "certificate_hash": "9dd2382764a0a49d94a8a8794e2c5deefe4d7e59"
+          }
+        },
+        {
+          "client_id": "103752037076-oavm6hp14jp2npcfd08dh213h2kq7n8l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmj9bxDTlI6605C12AhD5f_7fL0qysUc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103752037076-oavm6hp14jp2npcfd08dh213h2kq7n8l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
